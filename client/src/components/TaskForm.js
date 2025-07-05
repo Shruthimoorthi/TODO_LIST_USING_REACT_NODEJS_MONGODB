@@ -7,7 +7,7 @@ function TaskForm({ onCreate }) {
     e.preventDefault();
     if (!title.trim()) return;
     const token = localStorage.getItem("token");
-    const res = await fetch("http://localhost:5000/api/tasks", {
+    const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/tasks`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

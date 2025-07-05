@@ -29,7 +29,7 @@ function Dashboard() {
 
   useEffect(() => {
     const fetchTasks = async () => {
-      const res = await fetch("http://localhost:5000/api/tasks", {
+      const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/tasks`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -43,7 +43,7 @@ function Dashboard() {
   const handleAddTask = async () => {
     if (!title.trim()) return alert("Title is required!");
 
-    const res = await fetch("http://localhost:5000/api/tasks", {
+    const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/tasks`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -70,8 +70,8 @@ function Dashboard() {
         ? "completed"
         : "pending";
 
-    const res = await fetch(`http://localhost:5000/api/tasks/${task._id}`, {
-      method: "PUT",
+    const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/tasks/${task._id}`, {
+  method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -86,8 +86,8 @@ function Dashboard() {
   };
 
   const handleDelete = async (taskId) => {
-    await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
-      method: "DELETE",
+  await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/tasks/${taskId}`, {
+method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -98,9 +98,9 @@ function Dashboard() {
   const handleShare = async (taskId) => {
     const email = prompt("Enter email to share with:");
     if (!email) return;
+const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/tasks/share/${taskId}`, {
 
-    const res = await fetch(`http://localhost:5000/api/tasks/share/${taskId}`, {
-      method: "PUT",
+method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

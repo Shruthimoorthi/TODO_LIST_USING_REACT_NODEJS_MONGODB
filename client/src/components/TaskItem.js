@@ -17,7 +17,7 @@ function TaskItem({ task, onDelete, onStatusChange }) {
   const [editedDueDate, setEditedDueDate] = useState(task.dueDate?.slice(0, 10) || "");
 
   const handleDelete = async () => {
-    await fetch(`http://localhost:5000/api/tasks/${task._id}`, {
+    await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/tasks/${task._id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -32,7 +32,7 @@ function TaskItem({ task, onDelete, onStatusChange }) {
         : task.status === "in-progress"
         ? "completed"
         : "pending";
-    const res = await fetch(`http://localhost:5000/api/tasks/${task._id}`, {
+    const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/tasks/${task._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -46,7 +46,7 @@ function TaskItem({ task, onDelete, onStatusChange }) {
   };
 
   const handleSave = async () => {
-    const res = await fetch(`http://localhost:5000/api/tasks/${task._id}`, {
+    const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/tasks/${task._id}cd`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
