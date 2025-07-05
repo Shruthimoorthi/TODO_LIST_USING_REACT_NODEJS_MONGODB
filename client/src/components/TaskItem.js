@@ -201,7 +201,7 @@ function TaskItem({ task, onDelete, onStatusChange }) {
             const email = prompt("Enter email to share with:");
             if (!email) return;
 
-            fetch(`http://localhost:5000/api/tasks/share/${task._id}`, {
+            fetch(`${process.env.REACT_APP_API_BASE_URL}/api/tasks/share/${task._id}`, {
               method: "PUT",
               headers: {
                 "Content-Type": "application/json",
