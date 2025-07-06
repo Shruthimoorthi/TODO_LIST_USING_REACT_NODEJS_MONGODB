@@ -9,7 +9,7 @@ dotenv.config(); //  Load .env first
 const app = express();
 
 //  Middlewares
-app.use(cors({ origin: ["http://localhost:3000" ,"https://your-vercel-app.vercel.app"],credentials:true, })); // Only allow your React frontend
+app.use(cors({ origin: [process.env.CLIENT_URL, "http://localhost:3000"] ,credentials:true, })); // Only allow your React frontend
 app.use(express.json());
 app.use(passport.initialize());
 
