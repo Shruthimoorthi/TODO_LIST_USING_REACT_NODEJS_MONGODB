@@ -9,7 +9,24 @@ dotenv.config(); //  Load .env first
 const app = express();
 
 //  Middlewares
-app.use(cors({ origin: [process.env.CLIENT_URL, "http://localhost:3000"] ,credentials:true, })); // Only allow your React frontend
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://todo-list-using-react-nodejs-mongod.vercel.app"
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        console.log("❌ CORS blocked origin:", origin);
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(passport.initialize());
 
