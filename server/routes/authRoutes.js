@@ -17,8 +17,8 @@ router.get(
   passport.authenticate("google", { session: false, failureRedirect: "/" }),
   (req, res) => {
     const token = jwt.sign({ id: req.user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
- res.redirect(`https://todo-list-using-react-nodejs-mongodb.vercel.app/dashboard?token=${token}`);
-}
+    res.redirect(`http://localhost:3000/dashboard?token=${token}`);
+  }
 );
 
 module.exports = router;
