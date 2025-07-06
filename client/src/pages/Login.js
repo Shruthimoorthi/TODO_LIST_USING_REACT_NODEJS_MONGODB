@@ -1,7 +1,7 @@
 import React from "react";
 const Login = () => {
   const handleLogin = () => {
-    window.location.href = "http://localhost:5000/auth/google";
+    window.location.href = "https://todo-list-using-react-nodejs-mongodb.onrender.com/auth/google"; // use production URL
   };
   return (
     <div
